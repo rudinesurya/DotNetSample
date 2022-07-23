@@ -10,8 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<AppDbContext>(options =>
 //    options.UseSqlServer(builder.Configuration.GetConnectionString("DotNetSample")));
 
+//builder.Services.AddDbContext<AppDbContext>(options =>
+//    options.UseSqlite("Data Source=DotNetSample.db"));
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=DotNetSample.db"));
+    options.UseInMemoryDatabase("inmemorydb"));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

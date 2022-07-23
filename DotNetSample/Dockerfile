@@ -20,6 +20,7 @@ FROM build AS publish
 RUN dotnet publish "DotNetSample.csproj" -c Release -o /app/publish
 
 FROM base AS final
+ENV ASPNETCORE_ENVIRONMENT Development
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "DotNetSample.dll"]
