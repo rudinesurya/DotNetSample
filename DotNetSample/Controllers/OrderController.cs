@@ -25,7 +25,7 @@ namespace DotNetSample.Controllers
             return Ok(OrderService.GetOrdersAsync());
         }
 
-        [HttpGet("{id}", Name = "GetOrderById")]
+        [HttpGet("id/{id}", Name = "GetOrderById")]
         [EnableQuery]
         [ProducesResponseType(typeof(Order), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get([FromRoute] Guid id)

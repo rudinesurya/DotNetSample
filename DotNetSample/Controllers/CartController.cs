@@ -28,12 +28,27 @@ namespace DotNetSample.Controllers
             return Ok(CartService.GetCartsAsync());
         }
 
-        [HttpGet("{id}", Name = "GetCartById")]
+        [HttpGet("id/{id}", Name = "GetCartById")]
         [EnableQuery]
         [ProducesResponseType(typeof(Cart), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Get([FromRoute] Guid id)
+        public async Task<IActionResult> GetCartById([FromRoute] Guid id)
         {
             var cart = await CartService.GetCartByIdAsync(id);
+
+            if (cart == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(cart);
+        }
+
+        [HttpGet("userName/{userName}", Name = "GetCartByUserName")]
+        [EnableQuery]
+        [ProducesResponseType(typeof(Cart), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetCartByUserName([FromRoute] string userName)
+        {
+            var cart = await CartService.GetCartByUserNameAsync(userName);
 
             if (cart == null)
             {

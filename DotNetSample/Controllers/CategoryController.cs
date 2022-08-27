@@ -25,7 +25,7 @@ namespace DotNetSample.Controllers
             return Ok(CategoryService.GetCategoriesAsync());
         }
 
-        [HttpGet("{id}", Name = "GetCategoryById")]
+        [HttpGet("id/{id}", Name = "GetCategoryById")]
         [EnableQuery]
         [ProducesResponseType(typeof(Category), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get([FromRoute] Guid id)
